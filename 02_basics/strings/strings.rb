@@ -28,7 +28,7 @@ puts "first_byte: #{first_byte}"
 
 # Whats HERE!
 # Class: String
-# Inherit from class Object  // Method: String.superclasses
+# Inherit from class Object  // Method: String.superclass
 # Includes module Comparable // Method: String.included_modules
 
 # İşte, bazı String methodları:
