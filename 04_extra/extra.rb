@@ -55,3 +55,12 @@
 # Bir fonksiyon veya metodun sonucu olarak döndürülür.
 
 # Esasen bu, dilin varlığa (bir fonksiyon, nesne veya veri yapısı gibi) diğer herhangi bir değer gibi davrandığı anlamına gelir. Diğer veri türleriyle aynı şekilde manipüle edilebilir ve kullanılabilir.
+
+
+# What is Heap Allocation and Immediate Values in Ruby?
+
+# Ruby'de çoğu nesne heap üzerinde saklanır, bu da dinamik bellek yönetimine ve çöp toplamaya izin verir. Ancak, özellikle Integer gibi bazı temel sayısal sınıflar için istisnalar vardır. Bu istisnalar "anlık değerler" olarak bilinir.
+
+# Immediate Values : Küçük tamsayılar (eski Ruby sürümlerinde Fixnum örnekleri, şimdi Integer altında birleştirildi), semboller ve true, false ve nil gibi bazı nesneler "anlık değerler" olarak saklanır. Bu anlık değerler heap üzerinde saklanmaz. Bunun yerine, doğrudan bir değişken referansının tipik olarak işaret edeceği bellek alanında temsil edilirler.
+
+# Heap Allocation for Other Objects : Diğer nesneler için (ara olmayan sayısal nesneler dahil): Yığın üzerinde tahsis edilirler. Yığın, çoğu nesnenin depolandığı dinamik bellek tahsisi için kullanılan bir bellek bölgesidir. Yığın tahsisi, Ruby'nin çöp toplayıcısı tarafından yönetilen karmaşık ve büyük nesnelerin oluşturulmasına izin verir.
