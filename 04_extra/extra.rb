@@ -46,3 +46,12 @@
 # UTF-8, Unicode için hem ASCII hem de ASCII olmayan karakterleri verimli bir şekilde temsil eden ve modern bilgisayarlarda yaygın olarak kullanılan değişken genişlikli bir kodlama şemasıdır.
 
 # Özünde, ASCII temeldi, Unicode küresel olarak erişimini genişletti ve UTF-8, verimliliği ve ASCII ile uyumluluğu nedeniyle Unicode için baskın kodlama yöntemi haline geldi. Bu kodlar, bilgisayarların farklı dil ve yazılardaki metin verilerini işlemesini sağlayarak iletişim ve yazılım geliştirmeyi daha kapsayıcı ve çok yönlü hale getirmektedir.
+
+
+# What is First-Class Object?
+
+# Değişkenlerde ve veri yapılarında saklanabilir.
+# Fonksiyonlara veya yöntemlere argüman olarak aktarılır.
+# Bir fonksiyon veya metodun sonucu olarak döndürülür.
+
+# Esasen bu, dilin varlığa (bir fonksiyon, nesne veya veri yapısı gibi) diğer herhangi bir değer gibi davrandığı anlamına gelir. Diğer veri türleriyle aynı şekilde manipüle edilebilir ve kullanılabilir.

@@ -1,4 +1,4 @@
-# Proc Class
+# PROC CLASS
 
 # Ruby'deki Proc sınıfı, bir değişkende saklanabilen ve çalıştırılabilen bir kod bloğunu temsil eder. Bu, kodu kapsüllemenin ve daha sonra aktarılabilen ve çalıştırılabilen bir nesne olarak ele almanın bir yoludur. Bu, yeniden kullanılabilir ve modüler kod oluşturmak için kullanışlıdır.
 
@@ -89,37 +89,9 @@ puts doubled_numbers.inspect
 # Not: Ruby'deki "&" sembolü, bir Proc veya lambda'yı bir bloğa dönüştürmek için kullanılır, bu daha sonra bir blok bekleyen metotlara geçirilebilir. Bu, bir Proc nesneniz olduğunda ve onu Enumerable modülündekiler gibi normalde bir blok alan metotlarla kullanmak istediğinizde kullanışlıdır (örneğin, map, each, select, vb.)
 
 
-# Peki, methodlar varken neden Proc nesnesine ihtiyaç duyarız? İşte bazı nedenleri:
-# Esneklik:
-# Proc: Bir metoda kolayca farklı kod parçaları aktarabilir ve metodun kendisini değiştirmeden davranışını değiştirebilirsiniz.
-# Yöntem: Davranış sabittir ve metodu değiştirmeden kolayca değiştirilemez.
-
-# Yeniden kullanılabilirlik:
-# Proc: Bir Proc'u bir kez oluşturabilir ve birden fazla yerde kullanabilirsiniz.
-# Yöntem: Her yöntem belirli bir isme bağlıdır ve kolayca yeniden kullanılamaz.
-
-# Dinamik Davranış:
-# Proc: Çalışma zamanında farklı proc'lar geçirerek hangi kodun çalıştırılacağına karar verebilirsiniz.
-# Yöntem: Yürütülen kod, metot tanımı sırasında belirlenir ve değişmez.
-
-# Gecikmeli Yürütme:
-# Proc: Bir Proc içindeki kod, siz onu açıkça çağırana kadar yürütülmez.
-# Yöntem: Yöntem çağrıldığında kod hemen yürütülür.
-
-def execute_proc(my_proc, name = "Samet")
-  my_proc.call(name)
-end
-
-greet_proc = Proc.new { |name| puts "Hello, #{name}!" }
-farewell_proc = Proc.new { |name| puts "GoodBye #{name}!" }
-
-execute_proc(greet_proc)
-execute_proc(farewell_proc)
-
-
 # == RUBY DOCUMENTATION ==
 
-# Proc Class
+# PROC CLASS
 # Bir Proc nesnesi, yerel bir değişkende saklanabilen, bir metoda veya başka bir Proc'a aktarılabilen ve çağrılabilen bir kod bloğunun kapsüllenmesidir. Proc Ruby'de temel bir kavramdır ve fonksiyonel programlama özelliklerinin çekirdeğidir.
 
 square = Proc.new { |x| puts x ** 2 }
@@ -143,7 +115,7 @@ puts times5
 times3.call(12)
 times5.call(12)
 
-# 1. Creation
+# 1. CREATION
 # Proc oluşturmak için birkaç yöntem vardır:
 
 # 1.1 Proc sınıfı kurucusunu kullanın:
@@ -153,11 +125,11 @@ proc1 = Proc.new { |x| x ** 2 }
 proc2 = proc { |x| x ** 2 }
 
 # 1.3 Bir kod bloğunun proc argümanına alınması (& işaretine dikkat edin):
-def make_proc(&block)
-  block
+def execute(&block)
+  block.call
 end
 
-make_proc { |x| x ** 2 }
+execute { puts "Hello World!" }
 
 # 1.4 Kernel#lambda yöntemini kullanarak lambda semantiğine sahip bir proc oluşturun:
 lambda1 = lambda { |x| x ** 2 }
@@ -169,7 +141,7 @@ lambda2 = -> (x) { x ** 2 }
 # Örnek: add = ->(a, b) { a + b } iki sayıyı toplayan bir lambda oluşturur.
 
 
-# 2. Lambda and non-lambda semantics
+# 2. LAMBDA AND NON-LAMBDA SEMANTICS
 # Proc'lar iki çeşittir: lambda ve lambda olmayan (normal proc'lar). Farklılıklar şunlardır:
 
 # Lambda'larda return ve break bu lambda'dan çıkış anlamına gelir;
@@ -194,7 +166,7 @@ puts sample1.inspect
 puts sample2.inspect
 
 
-# 3. Conversion of other objects to procs
+# 3. CONVERSION OF OTHER OBJECTS TO PROCS
 # to_proc yöntemini uygulayan herhangi bir nesne & operatörü tarafından bir proc'ye dönüştürülebilir ve iterator'lar tarafından tüketilebilir.
 
 # 3.1 Converting a Symbol to a Proc:
@@ -229,50 +201,44 @@ result1 = [1, 2, 3].map(&adder)
 puts result1.inspect
 
 
-# 4. Orphaned Procs
-# "Öksüz proc", Ruby'de belirli bir bağlamda tanımlanmış ancak daha sonra orijinal bağlamdaki değişkenlerin ve bağların artık mevcut olmadığı farklı bir bağlamda kullanılan bir Proc nesnesini tanımlamak için kullanılan bir terimdir. Bu beklenmedik davranışlara veya hatalara yol açabilir çünkü proc artık var olmayan değişkenlere erişmeye çalışabilir.
+# 4. PROC METHODS
 
-# Ruby'de, bir proc oluşturulduğunda, tanımlandığı geçerli kapsamı (yerel değişkenler, sabitler ve metotlar dahil) yakalar. Eğer bu proc'u daha sonra farklı bir kapsamda çağırırsanız, yine de orijinal kapsamındaki değişkenlere erişmeye çalışacaktır. Bu değişkenler mevcut değilse, hatalarla karşılaşabilirsiniz.
+# 4.1 Class Methods
+proc3 = Proc.new { puts "Hello World!" }
+proc3.call
 
-def create_proc
-  x = 10
-  proc { x }
-end
+# Not: Blok olmadan çağrılırsa ArgumentError yükseltir.
 
-my_proc8 = create_proc.call
+# 4.2 Instances Methods
 
-puts create_proc # Niye call metodu kullandığını anla diye.
-puts my_proc8
+# f << g => composed_proc : f ve g'nin bileşimini temsil eden yeni bir proc (composed_proc) oluşturur. Bileşim, g'nin çıktısının (argümanın iki katına çıkarılması) daha sonra f'ye girdi olarak aktarılması (sonucun karesinin alınması) anlamına gelir.
+f = Proc.new { |x| x * x }
+g = Proc.new { |x| x + x }
 
-def another_context
-  my_proc8.call
-end
+composed_proc = f << g
+puts composed_proc.call(4)
 
-begin
-  another_context
-rescue NameError => e
-  puts e.message
-end
+# f >> g => composed_proc : f ve g'nin bileşimini temsil eden yeni bir proc (composed_proc) oluşturur. Bileşim, f'nin çıktısının (argümanın karesinin alınması) daha sonra g'ye girdi olarak aktarılması (sonucun iki katına çıkarılması) anlamına gelir.
+f1 = Proc.new { |x| x * x }
+g1 = Proc.new { |x| x + x }
 
-# Orphaned Proc'lardan Kaçınma
-# Öksüz proc'larla ilgili sorunları önlemek için proc'un tanımlandığı bağlamın çağrıldığında hala erişilebilir olmasını sağlayabilirsiniz. İşte birkaç strateji:
+composed_proc1 = f1 >> g1
+puts composed_proc1.call(4)
 
-class MyClass
-  def initialize
-    @x = 10
-  end
+# arity : Bir proc'un beklediği "zorunlu" argüman sayısı hakkında bilgi verir.
+puts proc {}.arity
+puts proc {|a|}.arity
+puts proc { |a, b| }.arity
+puts proc { |*a| }.arity
+puts proc { |b, *a| }.arity # -n-1 n: zorunu method
 
-  def my_proc
-    proc { @x }
-  end
-end
+# eql? : İki kod bloğu yalnızca ve yalnızca aynı kod bloğundan oluşuyorsa aynıdır.
+proc4 = proc { "Hello" }
+proc5 = proc { "Hello" }
 
-obj = MyClass.new
-p = obj.my_proc
-puts p.call
+puts proc4.eql?(proc5)
 
-def deneme
-  p.call
-end
-
-deneme
+# lambda? : Bir Proc nesnesi lambda ise true değerini döndürür. lambda değilse false.
+proc6 = lambda { puts "Hello World!" }
+proc6.call
+puts proc6.lambda?
