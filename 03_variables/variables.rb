@@ -164,7 +164,7 @@ class BankAccount
   end
 
   def welcome_message
-    puts "Hello Mr/Mrs #{customer}. Welcome!"
+    puts "Hello Mr/Mrs #{@customer}. Welcome!"
   end
 
   def self.total_accounts
@@ -174,6 +174,9 @@ end
 
 customer1 = BankAccount.new("Alice")
 customer2 = BankAccount.new("John")
+
+customer1.welcome_message
+customer2.welcome_message
 
 puts BankAccount.total_accounts
 
